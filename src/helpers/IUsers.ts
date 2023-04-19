@@ -6,17 +6,19 @@ export interface IUser {
     email:string,
     phone:string,
     password:string,
-    image:File,
+    image:{
+        data: Buffer,
+        contentType: string
+    },
     is_Verified: boolean,
     is_Admin:boolean,
     createdAt: Date
 }
 
-export type usersProp ={
-    name: string,
+export interface emailData {
     email:string,
-    phone:string,
-    password:string,
+    subject:string,
+    html: string
 }
 
 export type ImageProp ={

@@ -42,10 +42,10 @@ const userSchema:Schema = new Schema({
     password:{
         type:String,
         minLength:[6,'minimum length of password is 6'],
-        maxLength:[20,'maximum length of password is 20'],
+        maxLength:[100,'maximum length of password is 20'],
         validate:{
             validator:(v:string)=>{
-                return  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{6,20}$/.test(v)
+                return  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{6,100}$/.test(v)
             },
             message:`either digit, lowercase, uppercase or special character is missed`
         },
