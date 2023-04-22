@@ -21,6 +21,4 @@ export interface emailData {
     html: string
 }
 
-export type ImageProp ={
-    image:File
-}
+export type imageType = Express.Multer.File | undefined

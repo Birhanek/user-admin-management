@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import { errorResponse } from "../helpers/Response";
 
 export const isLoggedIn = (req: Request, res: Response, next: NextFunction) =>{
 
@@ -22,10 +23,7 @@ export const isLoggedOut = (req: Request, res: Response, next: NextFunction) =>{
 
     try {
         if(req.session.userId){
-            return res.status(400).json({
-                message: 'please logout first'
-            })
-            
+            errorResponse(res, 400,'please logout first' )  
         }
         next()
     } catch (error) {

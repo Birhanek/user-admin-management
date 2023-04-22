@@ -51,18 +51,27 @@ const userSchema:Schema = new Schema({
         },
         required:[true, 'password is required']
     },
-    image:{
+    /*image:{
         data:Buffer,
         contentType:String
+    },*/
+    image:{
+        type: String,
+        default:'../../public/image/UnitedKingdom.png'
     },
     is_Admin:{
         type:Boolean,
         default:false
     },
+    is_banned:{
+        type: Boolean,
+        default: false
+    },
+    /*
     is_Verified:{
         type:Boolean,
         default:false
-    },
+    },*/
     createdAt:{
         type:Date,
         default: Date.now

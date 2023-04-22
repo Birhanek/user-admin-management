@@ -1,14 +1,15 @@
 import { Router } from "express";
-import ExpressFormidable from "express-formidable";
 import session from "express-session"
+
 
 import { deleteUser, forgotPassword, login, profile, registerUser, resetPassword, updateUser, userLogout, verifyUser } from "../controllers/UsersController";
 import { userInputValidation, userLoginValidation } from "../validators/userValidation";
 import { dev } from "../config/parameterConfiguration";
 import { isLoggedIn, isLoggedOut } from "../middlewares/Auth";
+import { upload } from "../helpers/storage";
 
 const userRouter = Router()
-const formidable = ExpressFormidable()
+
 
 userRouter.use(
     session({
@@ -20,16 +21,16 @@ userRouter.use(
 }))
 
 
-userRouter.post('/register', formidable ,userInputValidation, registerUser)
+userRouter.post('/register',upload.single('image'),userInputValidation, registerUser)
 userRouter.post('/verify-user', verifyUser)
-userRouter.post('/login',formidable, userLoginValidation,isLoggedOut, login)
+userRouter.post('/login', userLoginValidation,isLoggedOut, login)
 userRouter.get('/profile', isLoggedIn, profile)
 userRouter.get('/logout',isLoggedIn, userLogout)
 userRouter.delete('/',isLoggedIn,deleteUser)
-userRouter.put('/', isLoggedIn,formidable,updateUser)
+userRouter.put('/', isLoggedIn,upload.single('image'), updateUser)
 
 // password resetting 
-userRouter.post('/forgot-password',formidable,userLoginValidation, isLoggedOut, forgotPassword)
+userRouter.post('/forgot-password',userLoginValidation, isLoggedOut, forgotPassword)
 userRouter.post('/reset-password',isLoggedOut, resetPassword)
 
 

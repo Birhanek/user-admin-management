@@ -1,5 +1,4 @@
 import { Router } from "express";
-import ExpressFormidable from "express-formidable";
 import session from "express-session"
 import { dev } from "../config/parameterConfiguration";
 
@@ -8,7 +7,6 @@ import { adminLogin, adminLogout, getAllUsers } from "../controllers/AdminContro
 import { isAdminLoggedIn, isAdminLoggedOut } from "../middlewares/adminAuthentication";
 
 const adminRouter = Router()
-const formidable = ExpressFormidable()
 
 adminRouter.use(
     session({
@@ -19,7 +17,7 @@ adminRouter.use(
     cookie: { secure: false, maxAge: 10*6000 }
 }))
 
-adminRouter.post('/login',formidable, userLoginValidation,isAdminLoggedOut, adminLogin )
+adminRouter.post('/login', userLoginValidation,isAdminLoggedOut, adminLogin )
 adminRouter.get('/logout', isAdminLoggedIn,adminLogout)
 adminRouter.get('/',isAdminLoggedIn,getAllUsers)
 
