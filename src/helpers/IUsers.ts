@@ -6,11 +6,8 @@ export interface IUser {
     email:string,
     phone:string,
     password:string,
-    image:{
-        data: Buffer,
-        contentType: string
-    },
-    is_Verified: boolean,
+    image: string,
+    is_banned: boolean,
     is_Admin:boolean,
     createdAt: Date
 }

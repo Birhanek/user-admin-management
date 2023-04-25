@@ -7,7 +7,7 @@ export const errorResponse = (res:Response, statusCode:number, message:string) =
     })
 }
 
-export const successResponse = (res:Response, statusCode: number, message:string, data) => {
+export const successResponse = (res:Response, statusCode: number, message:string, data={}) => {
     return res.status(statusCode).json({
         ok: true,
         message: message,

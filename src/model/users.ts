@@ -57,7 +57,7 @@ const userSchema:Schema = new Schema({
     },*/
     image:{
         type: String,
-        default:'../../public/image/UnitedKingdom.png'
+        default:'UnitedKingdom.png'
     },
     is_Admin:{
         type:Boolean,
